@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .menu h1 {
+            font-size: 24px;
+        }
+
+        .menu nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu nav ul li {
+            margin-right: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .menu nav ul li a {
+            color: #ffffff;
+            transition: color 0.5s ease;
+            border-bottom: 1px solid transparent;
+            padding: 10px 15px;
+        }
+
+        .menu nav ul li a:hover {
+            color: #f3f3f3;
+            border-bottom-color: #ffffff;
+        }
+
+        .menu button {
+            background-color: #fba500;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+
+        .menu button:hover {
+            background-color: #f3e354;
+            transform: translateY(-3px);
+        }
+
+        .fa-bars {
+            display: none;
+        }
+
+
+        .header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .quiz-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-body {
+            padding: 20px;
+            background-color: #ebeef2;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .answers {
+            margin-bottom: 20px;
+        }
+
+        .answers div {
+            margin-bottom: 10px;
+        }
+
+        .answers label {
+            margin-left: 10px;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="header">
+        <h1>Quiz App</h1>
+    </div>
+    <div class="menu">
+        <h1>Quiz App</h1>
+        <nav>
+            <ul class="link">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../Html/html5.html">Html5</a></li>
+                <li><a href="javascript.html">Javascript</a></li>
+                <li><a href="../Php/php.html">Php</a></li>
+            </ul>
+            <i class="fa-solid fa-bars"></i>
+        </nav>
+        <button>Contactez-nous</button>
+    </div>
+    <div class="container">
+        <div class="quiz-title">Quiz Javascript</div>
+        <div class="quiz-body">
+            <div id="quiz-container">
+            </div>
+            <button class="submit-btn">Suivant</button>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+    <script>
+        const submitButton = document.querySelector('.submit-btn');
+
+        function createQuiz(questions) {
+            let score = 0;
+            let currentIndex = 0;
+
+            function getCurrentQuestion() {
+                return questions[currentIndex];
+            }
+
+            function checkAnswer(answer) {
+                const currentQuestion = getCurrentQuestion();
+                if (currentQuestion.correctAnswer === answer) {
+                    score++;
+                }
+                currentIndex++;
+            }
+
+            function hasEnded() {
+                return currentIndex === questions.length;
+            }
+
+            return {
+                getCurrentQuestion,
+                checkAnswer,
+                hasEnded,
+                getScore: () => score,
+                getTotalQuestions: () => questions.length
+            };
+        }
+
+        const quizContainer = document.getElementById('quiz-container');
+        const resultContainer = document.getElementById('result');
+
+        const questions = [
+            {
+                question: "Quelle méthode JavaScript est utilisée pour ajouter un nouvel élément HTML à une page web?",
+                answers: ["append()", "addElement()", "appendChild()"],
+                correctAnswer: "appendChild()"
+            },
+            {
+                question: "Quelle méthode JavaScript est utilisée pour récupérer le contenu d'un élément HTML?",
+                answers: ["getTextContent()", "innerHTML()", "textContent()"],
+                correctAnswer: "textContent()"
+            },
+            {
+                question: "Quelle méthode JavaScript est utilisée pour convertir une chaîne de caractères en un nombre entier?",
+                answers: ["parseInt()", "toNumber()", "convertToInt()"],
+                correctAnswer: "parseInt()"
+            },
+            {
+                question: "Quel est le résultat de typeof [] en JavaScript?",
+                answers: ["object", "array", "undefined"],
+                correctAnswer: "object"
+            },
+            {
+                question: "Quelle fonction JavaScript est utilisée pour arrêter l'exécution d'une boucle?",
+                answers: ["exit()", "break()", "stop()"],
+                correctAnswer: "break()"
+            }
+        ];
+
+        const quiz = createQuiz(questions);
+
+        function displayQuestion() {
+            const currentQuestion = quiz.getCurrentQuestion();
+            const answersHTML = currentQuestion.answers.map(answer =>
+                `<div>
+                    <input type="radio" name="answer" value="${answer}">
+                    <label>${answer}</label>
+                </div>`
+            ).join('');
+
+            quizContainer.innerHTML = `
+                <div class="question">${currentQuestion.question}</div>
+                <div class="answers">${answersHTML}</div>
+            `;
+        }
+
+        function showResult() {
+            quizContainer.style.display = 'none';
+            submitButton.style.display = 'none';
+            resultContainer.innerHTML = `Vous avez obtenu ${quiz.getScore()}/${quiz.getTotalQuestions()} réponses correctes.`;
+            resultContainer.style.display = 'block';
+        }
+
+        function submitQuiz() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (selectedOption) {
+                const answer = selectedOption.value;
+                quiz.checkAnswer(answer);
+
+                if (quiz.hasEnded()) {
+                    showResult();
+                } else {
+                    displayQuestion();
+                }
+            }
+        }
+
+        // Initialiser le quiz au chargement de la page
+        displayQuestion();
+
+        // Ajouter un gestionnaire d'événement pour le bouton de soumission
+        submitButton.addEventListener('click', submitQuiz);
+
+    </script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

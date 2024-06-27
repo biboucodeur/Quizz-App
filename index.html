@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz-App avec Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .menu h1 {
+            font-size: 24px;
+        }
+
+        .menu nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu nav ul li {
+            margin-right: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .menu nav ul li a {
+            color: #ffffff;
+            transition: color 0.5s ease;
+            border-bottom: 1px solid transparent;
+            padding: 10px 15px;
+        }
+
+        .menu nav ul li a:hover {
+            color: #f3f3f3;
+            border-bottom-color: #ffffff;
+        }
+
+        .menu button {
+            background-color: #fba500;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+
+        .menu button:hover {
+            background-color: #f3e354;
+            transform: translateY(-3px);
+        }
+
+        .fa-bars {
+            display: none;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ebeef2;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .quiz-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-body {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: calc(33.33% - 20px);
+            max-width: 250px;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 0 0 5px 5px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .menu h1 {
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .menu nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .menu nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu nav ul li a {
+                padding: 10px 0;
+                border-bottom: none;
+            }
+
+            .menu .fa-bars {
+                display: block;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .menu .link-afficher {
+                display: flex;
+            }
+
+            .menu button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Quiz App</h1>
+    </div>
+    <div class="menu">
+        <h1>Quiz App</h1>
+        <nav>
+            <ul class="link">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="./Html/html5.html">Html5</a></li>
+                <li><a href="./Javascript/javascript.html">Javascript</a></li>
+                <li><a href="./Php/php.html">Php</a></li>
+            </ul>
+            <i class="fa-solid fa-bars"></i>
+        </nav>
+        <button>Contactez-nous</button>
+    </div>
+
+    <div class="container">
+        <div class="quiz-title">Quizz avec tous les langages</div>
+        <div class="quiz-body">
+            <div class="cards">
+                <div class="card">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, quaerat?</p>
+                    <h3>Javascript</h3>
+                    <a href="./Javascript/javascript.html" class="btn">Faire le quizz</a>
+                </div>
+                <div class="card">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, quaerat?</p>
+                    <h3>HTML</h3>
+                    <a href="./Html/html5.html" class="btn">Faire le quizz</a>
+                </div>
+                <div class="card">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, quaerat?</p>
+                    <h3>PHP</h3>
+                    <a href="./Php/php.html" class="btn">Faire le quizz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Quizz-App | Tous droits réservés - 2024</p>
+    </footer>
+
+    <script>
+        const link = document.querySelector('.link');
+        const fabars = document.querySelector('.fa-bars');
+        const btn = document.querySelector('button');
+
+        fabars.addEventListener('click', () => {
+            link.classList.toggle("link-afficher");
+            btn.classList.toggle("link-afficher");
+            fabars.classList.toggle('fa-times');
+        });
+    </script>
+</body>
+
+</html>
