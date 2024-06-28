@@ -70,8 +70,23 @@
         .fa-bars {
             display: none;
         }
-
-
+        .correcte{
+            background: #5ac25a;
+            color: #FFF;
+            padding: 5px;
+            border-radius: 3px;
+            font-weight: 400;
+        }
+        .faux{
+            background-color: #dc3545;
+            color: #FFF;
+            padding: 5px;
+            border-radius: 3px;
+            font-weight: 400;
+        }
+        span{
+            font-weight: 400;
+        }
         .header {
             background-color: #007bff;
             color: #ffffff;
@@ -138,8 +153,6 @@
             margin-top: 20px;
             text-align: center;
         }
-      
-
         @media (max-width: 768px) {
             .container {
                 max-width: 100%;
@@ -170,8 +183,7 @@
     <div class="container">
         <div class="quiz-title">Quiz Html5</div>
         <div class="quiz-body">
-            <div id="quiz-container">
-            </div>
+            <div id="quiz-container"></div>
             <button class="submit-btn">Suivant</button>
             <div class="result" id="result"></div>
         </div>
@@ -182,6 +194,7 @@
         function createQuiz(questions) {
             let score = 0;
             let currentIndex = 0;
+            let userAnswers = [];
 
             function getCurrentQuestion() {
                 return questions[currentIndex];
@@ -189,6 +202,13 @@
 
             function checkAnswer(answer) {
                 const currentQuestion = getCurrentQuestion();
+                userAnswers.push({
+                    question: currentQuestion.question,
+                    selectedAnswer: answer,
+                    correctAnswer: currentQuestion.correctAnswer,
+                    isCorrect: currentQuestion.correctAnswer === answer
+                });
+
                 if (currentQuestion.correctAnswer === answer) {
                     score++;
                 }
@@ -204,7 +224,8 @@
                 checkAnswer,
                 hasEnded,
                 getScore: () => score,
-                getTotalQuestions: () => questions.length
+                getTotalQuestions: () => questions.length,
+                getUserAnswers: () => userAnswers
             };
         }
 
@@ -216,29 +237,27 @@
                 question: "Quelle balise est utilisée pour définir une liste non ordonnée en HTML?",
                 answers: ["ul", "ol", "li"],
                 correctAnswer: "ul"
-            },
+             },
             {
                 question: "Quelle est la balise utilisée pour définir une cellule dans un tableau en HTML?",
                 answers: ["tr", "td", "table"],
                 correctAnswer: "td"
             },
-            {
-                question: "Comment insérer une image dans une page HTML?",
-                answers: ["img", "image", "picture"],
-                correctAnswer: "img"
-            },
-            {
-                question: "Quelle balise est utilisée pour créer un lien hypertexte en HTML?",
-                answers: ["a", "link", "p"],
-                correctAnswer: "a"
-            },
-            {
-                question: "Comment définir le titre d'une page HTML?",
-                answers: ["title", "header", "h1"],
-                correctAnswer: "title"
-            }
-        
-         
+            // {
+            //     question: "Comment insérer une image dans une page HTML?",
+            //     answers: ["img", "image", "picture"],
+            //     correctAnswer: "img"
+            // },
+            // {
+            //     question: "Quelle balise est utilisée pour créer un lien hypertexte en HTML?",
+            //     answers: ["a", "link", "p"],
+            //     correctAnswer: "a"
+            // },
+            // {
+            //     question: "Comment définir le titre d'une page HTML?",
+            //     answers: ["title", "header", "h1"],
+            //     correctAnswer: "title"
+            // }
         ];
 
         const quiz = createQuiz(questions);
@@ -261,7 +280,22 @@
         function showResult() {
             quizContainer.style.display = 'none';
             submitButton.style.display = 'none';
-            resultContainer.innerHTML = `Vous avez obtenu ${quiz.getScore()}/${quiz.getTotalQuestions()} réponses correctes.`;
+
+            const userAnswers = quiz.getUserAnswers();
+            let resultHTML = `Vous avez obtenu ${quiz.getScore()}/${quiz.getTotalQuestions()} réponses correctes.<br><br>`;
+
+            userAnswers.forEach((answer, index) => {
+                resultHTML += `
+                    <div>
+                        <span>Question ${index + 1}:</span> ${answer.question}<br>
+                        <span>Votre réponse:</span> ${answer.selectedAnswer}<br>
+                        <span class="bonrep">Bonne réponse:</span> ${answer.correctAnswer}<br>
+                        <span>${answer.isCorrect ? '<b class="correcte">Correct</b>' : '<b class="faux">Incorrect</b>'}</span>
+                    </div><br>
+                `;
+            });
+
+            resultContainer.innerHTML = resultHTML;
             resultContainer.style.display = 'block';
         }
 
@@ -280,12 +314,8 @@
             }
         }
 
-        // Initialiser le quiz au chargement de la page
         displayQuestion();
-
-        // Ajouter un gestionnaire d'événement pour le bouton de soumission
         submitButton.addEventListener('click', submitQuiz);
-
     </script>
 </body>
 
