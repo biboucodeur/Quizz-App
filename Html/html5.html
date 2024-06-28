@@ -70,23 +70,27 @@
         .fa-bars {
             display: none;
         }
-        .correcte{
+
+        .correcte {
             background: #5ac25a;
             color: #FFF;
             padding: 5px;
             border-radius: 3px;
             font-weight: 400;
         }
-        .faux{
+
+        .faux {
             background-color: #dc3545;
             color: #FFF;
             padding: 5px;
             border-radius: 3px;
             font-weight: 400;
         }
-        span{
+
+        span {
             font-weight: 400;
         }
+
         .header {
             background-color: #007bff;
             color: #ffffff;
@@ -153,6 +157,18 @@
             margin-top: 20px;
             text-align: center;
         }
+
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 max-width: 100%;
@@ -182,6 +198,7 @@
     </div>
     <div class="container">
         <div class="quiz-title">Quiz Html5</div>
+        <div class="timer" id="timer"></div>
         <div class="quiz-body">
             <div id="quiz-container"></div>
             <button class="submit-btn">Suivant</button>
@@ -189,6 +206,7 @@
         </div>
     </div>
     <script>
+
         const submitButton = document.querySelector('.submit-btn');
 
         function createQuiz(questions) {
@@ -237,7 +255,7 @@
                 question: "Quelle balise est utilisée pour définir une liste non ordonnée en HTML?",
                 answers: ["ul", "ol", "li"],
                 correctAnswer: "ul"
-             },
+            },
             {
                 question: "Quelle est la balise utilisée pour définir une cellule dans un tableau en HTML?",
                 answers: ["tr", "td", "table"],
@@ -276,28 +294,52 @@
                 <div class="answers">${answersHTML}</div>
             `;
         }
+        let timeRemaining = 1800; // Temps en secondes (1 heure)
+        let countdown; // Variable pour stocker l'intervalle
+
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+
+            countdown = setInterval(() => {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+
+                timerElement.textContent = `Temps restant : ${minutes}m ${seconds}s`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(countdown);
+                    alert("Temps écoulé !");
+                    showResult();
+                } else {
+                    timeRemaining--;
+                }
+            }, 1000);
+        }
 
         function showResult() {
+            clearInterval(countdown); // Arrêter le compte à rebours
             quizContainer.style.display = 'none';
             submitButton.style.display = 'none';
 
             const userAnswers = quiz.getUserAnswers();
-            let resultHTML = `Vous avez obtenu ${quiz.getScore()}/${quiz.getTotalQuestions()} réponses correctes.<br><br>`;
+            let resultHTML = `Vous avez ${quiz.getScore()}/${quiz.getTotalQuestions()}.<br><br>`;
 
             userAnswers.forEach((answer, index) => {
                 resultHTML += `
-                    <div>
-                        <span>Question ${index + 1}:</span> ${answer.question}<br>
-                        <span>Votre réponse:</span> ${answer.selectedAnswer}<br>
-                        <span class="bonrep">Bonne réponse:</span> ${answer.correctAnswer}<br>
-                        <span>${answer.isCorrect ? '<b class="correcte">Correct</b>' : '<b class="faux">Incorrect</b>'}</span>
-                    </div><br>
-                `;
+            <div>
+                <span>Question ${index + 1}:</span> <span>${answer.question}</span><br>
+                <span>Votre réponse:</span> ${answer.selectedAnswer}<br>
+                <span class="bonrep">Bonne réponse:</span> ${answer.correctAnswer}<br>
+                <span>${answer.isCorrect ? '<b class="correcte">Correct</b>' : '<b class="faux">Incorrect</b>'}</span>
+            </div><br>
+        `;
             });
 
             resultContainer.innerHTML = resultHTML;
             resultContainer.style.display = 'block';
         }
+
+        startTimer();
 
         function submitQuiz() {
             const selectedOption = document.querySelector('input[name="answer"]:checked');
