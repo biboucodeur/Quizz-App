@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="menu">
+        <h3>Sen Quizz App</h3>
+        <nav>
+            <ul class="link">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="./html5.html">Html5</a></li>
+                <li><a href="./css.html">Css</a></li>
+                <li><a href="./javascript.html">Javascript</a></li>
+
+            </ul>
+            <i class="fa-solid fa-bars"></i>
+        </nav>
+        <a href="./contact.html"><button>Contact us</button></a>
+    </header>
+
+    <main class="container">
+        <h1 class="quiz-title">Quiz Css</h1>
+        <div class="timer" id="timer"></div>
+        <section class="quiz-body">
+            <div id="quiz-container"></div>
+            <button class="submit-btn">Suivant</button>
+            <div class="result" id="result"></div>
+        </section>
+    </main>
+    <script>
+        const questions = [
+            {
+                question: "Quel sélecteur CSS est utilisé pour cibler un élément par son identifiant?",
+                answers: ["#", ".", "*"],
+                correctAnswer: "#"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour changer la couleur de fond d'un élément?",
+                answers: ["background-color", "color", "font-color"],
+                correctAnswer: "background-color"
+            },
+            {
+                question: "Comment appliquer un commentaire en CSS?",
+                answers: ["/* Commentaire */", "// Commentaire", "<@-- Commentaire -->"],
+                correctAnswer: "/* Commentaire */"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour centrer un élément horizontalement avec margin?",
+                answers: ["margin: auto", "text-align: center", "align: center"],
+                correctAnswer: "margin: auto"
+            },
+            {
+                question: "Quel sélecteur CSS est utilisé pour appliquer des styles à un élément en fonction de son type?",
+                answers: ["Type Selector", "Class Selector", "Universal Selector"],
+                correctAnswer: "Type Selector"
+            },
+            {
+                question: "Quel est le sélecteur CSS utilisé pour cibler tous les éléments HTML?",
+                answers: ["*", "element", "all"],
+                correctAnswer: "*"
+            },
+            {
+                question: "Quelle est la fonction CSS utilisée pour ajouter de l'ombre à un élément?",
+                answers: ["box-shadow", "shadow", "text-shadow"],
+                correctAnswer: "box-shadow"
+            },
+            {
+                question: "Comment cibler tous les éléments de classe 'example' en CSS?",
+                answers: [".example", "#example", "*example"],
+                correctAnswer: ".example"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir l'espacement entre les lignes de texte?",
+                answers: ["line-height", "spacing", "text-spacing"],
+                correctAnswer: "line-height"
+            },
+            {
+                question: "Quel est le sélecteur CSS utilisé pour cibler un lien non visité?",
+                answers: [":link", ":visited", ":hover"],
+                correctAnswer: ":link"
+            },
+            {
+                question: "Comment appliquer une transformation pour faire pivoter un élément de 45 degrés en CSS?",
+                answers: ["transform: rotate(45deg)", "rotate: 45deg", "rotation: 45deg"],
+                correctAnswer: "transform: rotate(45deg)"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir la taille de la police de texte?",
+                answers: ["font-size", "text-size", "size"],
+                correctAnswer: "font-size"
+            },
+            {
+                question: "Quel sélecteur CSS est utilisé pour cibler les éléments qui sont au survol de la souris?",
+                answers: [":hover", ":active", ":focus"],
+                correctAnswer: ":hover"
+            },
+            {
+                question: "Comment définir un dégradé linéaire comme arrière-plan en CSS?",
+                answers: ["background: linear-gradient()", "gradient: linear()", "linear: gradient()"],
+                correctAnswer: "background: linear-gradient()"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir la largeur d'un élément?",
+                answers: ["width", "size", "length"],
+                correctAnswer: "width"
+            },
+            {
+                question: "Quel est le sélecteur CSS utilisé pour cibler le premier enfant d'un élément?",
+                answers: [":first-child", ":nth-child(1)", ":first"],
+                correctAnswer: ":first-child"
+            },
+            {
+                question: "Comment cibler un élément qui est le dernier enfant d'un autre élément en CSS?",
+                answers: [":last-child", ":nth-last-child(1)", ":last"],
+                correctAnswer: ":last-child"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir l'espacement entre les bordures des éléments?",
+                answers: ["padding", "margin", "space"],
+                correctAnswer: "padding"
+            },
+            {
+                question: "Quel sélecteur CSS est utilisé pour cibler un élément lorsque l'utilisateur passe sa souris dessus?",
+                answers: [":hover", ":active", ":focus"],
+                correctAnswer: ":hover"
+            },
+            {
+                question: "Comment cibler tous les éléments de type paragraphe en CSS?",
+                answers: ["p", "#p", ".p"],
+                correctAnswer: "p"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir l'alignement du texte à droite?",
+                answers: ["text-align: right", "align: right", "right-align"],
+                correctAnswer: "text-align: right"
+            },
+            {
+                question: "Quel est le sélecteur CSS utilisé pour cibler un élément qui est le dernier enfant de son parent?",
+                answers: [":last-child", ":nth-last-child(1)", ":last"],
+                correctAnswer: ":last-child"
+            },
+            {
+                question: "Comment cibler tous les liens qui sont actuellement visités en CSS?",
+                answers: [":visited", ":link", ":hover"],
+                correctAnswer: ":visited"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir l'espacement entre les lettres d'un texte?",
+                answers: ["letter-spacing", "word-spacing", "spacing"],
+                correctAnswer: "letter-spacing"
+            },
+            {
+                question: "Quel sélecteur CSS est utilisé pour appliquer des styles à des éléments spécifiques basés sur leur position dans une liste?",
+                answers: [":nth-child()", ":nth-of-type()", ":first-child"],
+                correctAnswer: ":nth-child()"
+            },
+            {
+                question: "Comment appliquer une couleur de texte spécifique à un lien visité en CSS?",
+                answers: [":visited { color: ...; }", ":link { color: ...; }", ":hover { color: ...; }"],
+                correctAnswer: ":visited { color: ...; }"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir l'espacement autour d'un élément?",
+                answers: ["margin", "padding", "spacing"],
+                correctAnswer: "margin"
+            },
+            {
+                question: "Quel sélecteur CSS est utilisé pour cibler un élément lorsque l'utilisateur clique dessus?",
+                answers: [":active", ":hover", ":focus"],
+                correctAnswer: ":active"
+            },
+            {
+                question: "Comment définir une bordure de 2 pixels solide rouge sur un élément en CSS?",
+                answers: ["border: 2px solid red", "border: solid 2px red", "border-width: 2px; border-style: solid; border-color: red;"],
+                correctAnswer: "border: 2px solid red"
+            },
+            {
+                question: "Quelle propriété CSS est utilisée pour définir l'espacement entre les mots d'un texte?",
+                answers: ["word-spacing", "letter-spacing", "spacing"],
+                correctAnswer: "word-spacing"
+            },
+
+        ];
+    </script>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

@@ -18,8 +18,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            background-color: #f9f9f9;
-            margin: 0;
+            background-color: #f0f8ff;
         }
 
         .menu {
@@ -79,6 +78,79 @@
             display: none;
         }
 
+
+        /* Global Styles */
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ebeef2;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .quiz-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-body {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .card {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 0 0 5px 5px;
+        }
+
         @media (max-width: 768px) {
             .menu {
                 display: flex;
@@ -121,81 +193,14 @@
                 font-size: 24px;
                 right: 0;
             }
-        }
 
-        /* Global Styles */
+            .cards {
+                display: block;
+            }
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #ebeef2;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-        }
-
-        .quiz-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .quiz-body {
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .cards {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: #f0f0f0;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 5px;
-            text-align: center;
-            width: calc(33.33% - 20px);
-            max-width: 250px;
-        }
-
-        .card p {
-            color: #666;
-        }
-
-        .card h3 {
-            margin-top: 10px;
-            font-size: 20px;
-            color: #333;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px 0;
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 0 0 5px 5px;
+            .card {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -207,32 +212,39 @@
             <ul class="link">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="./html5.html">Html5</a></li>
+                <li><a href="./css.html">Css</a></li>
                 <li><a href="./javascript.html">Javascript</a></li>
-                <li><a href="./php.html">Php</a></li>
+
             </ul>
             <i class="fa-solid fa-bars"></i>
         </nav>
-        <button>Contact us</button>
+        <a href="./contact.html"><button>Contact us</button></a>
     </div>
     <div class="container">
         <div class="quiz-title">Quizz sur les différents langages</div>
         <div class="quiz-body">
             <div class="cards">
                 <div class="card">
-                    <p>Testez vos connaissances en JavaScript, le langage du web.</p>
-                    <h3>JavaScript</h3>
-                    <a href="./javascript.html" class="btn">Faire le quiz</a>
-                </div>
-                <div class="card">
+                    <img src="./img/html.png" width="100">
                     <p>Découvrez les bases de HTML5, le fondement de toute page web.</p>
                     <h3>HTML5</h3>
                     <a href="./html5.html" class="btn">Faire le quiz</a>
                 </div>
+
                 <div class="card">
-                    <p>Évaluez vos compétences en PHP, un langage côté serveur.</p>
-                    <h3>PHP</h3>
-                    <a href="./php.html" class="btn">Faire le quiz</a>
+                    <img src="./img/css.png" width="100">
+                    <p>Testez vos connaissances en css, le langage pour le style.</p>
+                    <h3>Css</h3>
+                    <a href="./css.html" class="btn">Faire le quiz</a>
                 </div>
+
+                <div class="card">
+                    <img src="./img/js.png" width="100">
+                    <p>Testez vos connaissances en JavaScript, le langage du web.</p>
+                    <h3>JavaScript</h3>
+                    <a href="./javascript.html" class="btn">Faire le quiz</a>
+                </div>
+
             </div>
         </div>
     </div>
@@ -240,18 +252,7 @@
     <footer>
         <p>&copy; Sen Quizz App - 2024 | Tous droits réservés </p>
     </footer>
-    <script>
-        const link = document.querySelector('.link');
-        const fabars = document.querySelector('.fa-bars');
-        const btn = document.querySelector('button');
-
-        fabars.addEventListener('click', () => {
-            link.classList.toggle("afficher");
-            btn.classList.toggle("afficher");
-            fabars.classList.toggle('fa-times')
-        });
-
-    </script>
+    <script src="./script.js"></script>
 </body>
 
 </html>

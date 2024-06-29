@@ -9,7 +9,7 @@
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
-  background-color: #f9f9f9;
+  background-color: #f0f8ff;
 }
 
 .menu {
@@ -65,6 +65,7 @@ button:hover {
 
 .fa-bars {
   display: none;
+  cursor: pointer;
 }
 
 .container {
@@ -125,6 +126,20 @@ button:hover {
   margin-top: 20px;
   text-align: center;
 }
+span{
+  font-weight: 400;
+}
+.bonrep{
+  font-size: 18px;
+  color: #454444;
+  background-color: #f0f8ff;
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 5px;
+  text-align: center;
+  margin: 7px;
+  display: inline-block;
+}
 .correcte {
   background: #5ac25a;
   color: #fff;
@@ -133,7 +148,7 @@ button:hover {
 }
 
 .faux {
-  background-color: #dc3545;
+  background: #dc3545;
   color: #fff;
   padding: 5px;
   border-radius: 3px;
@@ -149,6 +164,7 @@ button:hover {
   text-align: center;
   margin-bottom: 20px;
 }
+
 
 @media (max-width: 768px) {
   .menu {

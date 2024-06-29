@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f8ff;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            width: 100%;
+            background-color: white;
+        }
+
+        nav h3 {
+            color: #007bff;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+            transition: 0.5s ease;
+        }
+
+        nav ul li:hover {
+            transform: translateY(5px);
+        }
+
+        nav ul li a {
+            color: #007bff;
+            transition: 0.5s ease;
+            border-bottom: 1px solid #007bff;
+            opacity: 1;
+        }
+
+        nav ul li a:hover {
+            color: #111622;
+            opacity: 0.6;
+        }
+
+        .fa-bars {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: flex;
+                flex-direction: column;
+                transition: 0.5s ease;
+            }
+
+            .menu h3 {
+                font-size: 30px;
+                position: relative;
+            }
+
+            .link {
+                display: none;
+                flex-direction: column;
+            }
+
+            nav ul li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .afficher {
+                display: block;
+            }
+
+            .fa-bars {
+                display: block;
+                position: absolute;
+                top: 30px;
+                cursor: pointer;
+                padding-right: 20px;
+                font-size: 24px;
+                right: 0;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .contact-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        button:hover {
+            background-color: #005bbd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="menu">
+        <h3>Sen Quizz App</h3>
+        <nav>
+            <ul class="link">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="./html5.html">Html5</a></li>
+                <li><a href="./css.html">Css</a></li>
+                <li><a href="./javascript.html">Javascript</a></li>
+
+            </ul>
+            <i class="fa-solid fa-bars"></i>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="contact-title">Contact Us</h1>
+        <form>
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </main>
+
+    <script>
+        const fabars = document.querySelector('.fa-bars');
+        const link = document.querySelector('.link');
+
+        fabars.addEventListener('click', () => {
+            link.classList.toggle("afficher");
+        });
+    </script>
+</body>
+
+</html>

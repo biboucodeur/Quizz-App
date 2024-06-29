@@ -51,19 +51,6 @@ function createQuiz(questions) {
 const quizContainer = document.getElementById('quiz-container');
 const resultContainer = document.getElementById('result');
 
-const questions = [
-    {
-        question: "Quelle balise est utilisée pour définir une liste non ordonnée en HTML?",
-        answers: ["ul", "ol", "li"],
-        correctAnswer: "ul"
-    },
-    {
-        question: "Quelle est la balise utilisée pour définir une cellule dans un tableau en HTML?",
-        answers: ["tr", "td", "table"],
-        correctAnswer: "td"
-    }
-];
-
 const quiz = createQuiz(questions);
 
 function displayQuestion() {
@@ -109,14 +96,14 @@ function showResult() {
     submitButton.style.display = 'none';
 
     const userAnswers = quiz.getUserAnswers();
-    let resultHTML = `<span class="timer">Vous avez ${quiz.getScore()}/${quiz.getTotalQuestions()}.</span><br><br>`;
+    let resultHTML = `<span class="timer">Vous avez ${quiz.getScore()}/${quiz.getTotalQuestions()} .</span><br><br>`;
 
     userAnswers.forEach((answer, index) => {
         resultHTML += `
             <div>
                 <span>Question ${index + 1}:</span> <span>${answer.question}</span><br>
                 <span>Votre réponse:</span> ${answer.selectedAnswer}<br>
-                <span class="bonrep">Bonne réponse:</span> ${answer.correctAnswer}<br>
+                <span class="bonrep">la bonne réponse était : ${answer.correctAnswer}</span><br>
                 <span>${answer.isCorrect ? '<b class="correcte">Correct</b>' : '<b class="faux">Incorrect</b>'}</span>
             </div><br>
         `;
