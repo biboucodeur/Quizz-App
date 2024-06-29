@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  background-color: white;
+}
+
+nav h3 {
+  color: #007bff;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin-right: 20px;
+  transition: 0.5s ease;
+}
+
+nav ul li:hover {
+  transform: translateY(5px);
+}
+
+nav ul li a {
+  color: #007bff;
+  transition: 0.5s ease;
+  border-bottom: 1px solid #007bff;
+}
+
+nav ul li a:hover {
+  color: #111622;
+  opacity: 0.6;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+button:hover {
+  background-color: #005bbd;
+}
+
+.fa-bars {
+  display: none;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.quiz-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.quiz-body {
+  padding: 20px;
+  background-color: #ebeef2;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.question {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.answers {
+  margin-bottom: 20px;
+}
+
+.answers div {
+  margin-bottom: 10px;
+}
+
+.answers label {
+  margin-left: 10px;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.result {
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+.correcte {
+  background: #5ac25a;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.faux {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.timer {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  background-color: #f0f8ff;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+  }
+
+  .menu h3 {
+    font-size: 30px;
+  }
+
+  .link {
+    display: none;
+    flex-direction: column;
+  }
+
+  button {
+    width: 100px;
+    margin: 0 auto;
+  }
+
+  nav ul li {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .afficher {
+    display: block;
+  }
+
+  .fa-bars {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    padding-right: 20px;
+    font-size: 24px;
+  }
+
+  .container {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .nonAff {
+    display: none;
+  }
+}
