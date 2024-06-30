@@ -18,11 +18,10 @@
                 <li><a href="./html5.html">Html5</a></li>
                 <li><a href="./css.html">Css</a></li>
                 <li><a href="./javascript.html">Javascript</a></li>
-
             </ul>
             <i class="fa-solid fa-bars"></i>
         </nav>
-        <a href="./contact.html"><button>Contact us</button></a> 
+        <a href="./contact.html"><button>Contact us</button></a>
     </header>
 
     <main class="container">
@@ -30,12 +29,14 @@
         <div class="timer" id="timer"></div>
         <section class="quiz-body">
             <div id="quiz-container"></div>
+            <button class="back-btn" style="display: none;">Retour</button>
             <button class="submit-btn">Suivant</button>
             <div class="result" id="result"></div>
         </section>
     </main>
-   <script>
-     const questions = [
+
+    <script>
+        const questions = [
             {
                 question: "Quelle méthode JavaScript est utilisée pour ajouter un nouvel élément HTML à une page web?",
                 answers: ["append()", "addElement()", "appendChild()"],
@@ -62,8 +63,169 @@
                 correctAnswer: "break()"
             }
         ];
-   </script>
-   <script src="./script.js"></script>
+
+        const link = document.querySelector('.link');
+        const fabars = document.querySelector('.fa-bars');
+        const btn = document.querySelector('button');
+
+        fabars.addEventListener('click', () => {
+            link.classList.toggle("afficher");
+            btn.classList.toggle("afficher");
+            fabars.classList.toggle('fa-times');
+        });
+
+        const submitButton = document.querySelector('.submit-btn');
+        const backButton = document.querySelector('.back-btn');
+
+        function createQuiz(questions) {
+            let score = 0;
+            let currentIndex = 0;
+            let userAnswers = [];
+
+            function getCurrentQuestion() {
+                return questions[currentIndex];
+            }
+
+            function checkAnswer(answer) {
+                const currentQuestion = getCurrentQuestion();
+                userAnswers[currentIndex] = {
+                    question: currentQuestion.question,
+                    selectedAnswer: answer,
+                    correctAnswer: currentQuestion.correctAnswer,
+                    isCorrect: currentQuestion.correctAnswer === answer
+                };
+
+                if (currentQuestion.correctAnswer === answer) {
+                    score++;
+                }
+                currentIndex++;
+            }
+
+            function hasEnded() {
+                return currentIndex === questions.length;
+            }
+
+            function decrementIndex() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                }
+            }
+
+            function getCurrentQuestionIndex() {
+                return currentIndex;
+            }
+
+            return {
+                getCurrentQuestion,
+                checkAnswer,
+                hasEnded,
+                getScore: () => score,
+                getTotalQuestions: () => questions.length,
+                getUserAnswers: () => userAnswers,
+                decrementIndex,
+                getCurrentQuestionIndex
+            };
+        }
+
+        const quizContainer = document.getElementById('quiz-container');
+        const resultContainer = document.getElementById('result');
+
+        const quiz = createQuiz(questions);
+
+        function displayQuestion() {
+            const currentQuestion = quiz.getCurrentQuestion();
+            const userAnswers = quiz.getUserAnswers();
+            const previousAnswer = userAnswers[quiz.getCurrentQuestionIndex()]?.selectedAnswer || "";
+
+            const answersHTML = currentQuestion.answers.map(answer => `
+                <div>
+                    <input type="radio" name="answer" value="${answer}" ${answer === previousAnswer ? "checked" : ""}>
+                    <label>${answer}</label>
+                </div>`
+            ).join('');
+
+            quizContainer.innerHTML = `
+                <div class="question">Question ${quiz.getCurrentQuestionIndex() + 1}: ${currentQuestion.question}</div>
+                <div class="answers">${answersHTML}</div>
+            `;
+
+            backButton.style.display = quiz.getCurrentQuestionIndex() > 1 ? 'inline-block' : 'none';
+        }
+
+        let timeRemaining = 1800;
+        let countdown;
+
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+
+            countdown = setInterval(() => {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+
+                timerElement.textContent = `Temps restant : ${minutes}m ${seconds}s`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(countdown);
+                    alert("Temps écoulé !");
+                    showResult();
+                } else {
+                    timeRemaining--;
+                }
+            }, 1000);
+        }
+
+        function showResult() {
+            clearInterval(countdown);
+            quizContainer.style.display = 'none';
+            submitButton.style.display = 'none';
+
+            const userAnswers = quiz.getUserAnswers();
+            let resultHTML = `<span class="timer">Vous avez ${quiz.getScore()}/${quiz.getTotalQuestions()} .</span><br><br>`;
+
+            userAnswers.forEach((answer, index) => {
+                resultHTML += `
+                    <div>
+                        <span>Question ${index + 1}:</span> <span>${answer.question}</span><br>
+                        <span>Votre réponse:</span> ${answer.selectedAnswer}<br>
+                        <span class="bonrep">la bonne réponse était : ${answer.correctAnswer}</span><br>
+                        <span>${answer.isCorrect ? '<b class="correcte">Correct</b>' : '<b class="faux">Incorrect</b>'}</span>
+                    </div><br>
+                `;
+            });
+
+            resultContainer.innerHTML = resultHTML;
+            resultContainer.style.display = 'block';
+        }
+
+        startTimer();
+
+        function submitQuiz() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (selectedOption) {
+                const answer = selectedOption.value;
+                quiz.checkAnswer(answer);
+
+                if (quiz.hasEnded()) {
+                    showResult();
+                } else {
+                    displayQuestion();
+                }
+            } else {
+                alert("Veuillez sélectionner une réponse.");
+            }
+        }
+
+        backButton.addEventListener('click', () => {
+            if (quiz.getCurrentQuestionIndex() > 0) {
+                quiz.decrementIndex();
+                displayQuestion();
+            }
+        });
+
+        submitButton.addEventListener('click', submitQuiz);
+        displayQuestion();
+    </script>
 </body>
 
 </html>

@@ -164,6 +164,15 @@ span{
   text-align: center;
   margin-bottom: 20px;
 }
+.back-btn {
+  /* Add your styles here, similar to .submit-btn */
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #007bff;
+  border: none;
+  cursor: pointer;
+  /* More styles as needed */
+}
 
 
 @media (max-width: 768px) {

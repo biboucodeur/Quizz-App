@@ -68,7 +68,7 @@ function displayQuestion() {
     `;
 }
 
-let timeRemaining = 1600;
+let timeRemaining = 1800;
 let countdown;
 
 function startTimer() {
