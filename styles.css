@@ -126,10 +126,12 @@ button:hover {
   margin-top: 20px;
   text-align: center;
 }
-span{
+
+span {
   font-weight: 400;
 }
-.bonrep{
+
+.bonrep {
   font-size: 18px;
   color: #454444;
   background-color: #f0f8ff;
@@ -140,6 +142,7 @@ span{
   margin: 7px;
   display: inline-block;
 }
+
 .correcte {
   background: #5ac25a;
   color: #fff;
@@ -164,16 +167,14 @@ span{
   text-align: center;
   margin-bottom: 20px;
 }
+
 .back-btn {
-  /* Add your styles here, similar to .submit-btn */
   padding: 10px 20px;
   margin-right: 10px;
   background-color: #007bff;
   border: none;
   cursor: pointer;
-  /* More styles as needed */
 }
-
 
 @media (max-width: 768px) {
   .menu {
