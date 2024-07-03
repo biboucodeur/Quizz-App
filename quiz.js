@@ -88,7 +88,7 @@ function displayQuestion() {
 }
 
 // Fonctionnalité du minuteur
-let timeRemaining = 1800;
+let timeRemaining = 3600;
 let countdown;
 
 // Démarrer le minuteur
