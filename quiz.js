@@ -99,7 +99,7 @@ function startTimer() {
         const minutes = Math.floor(timeRemaining / 60);
         const seconds = timeRemaining % 60;
 
-        timerElement.textContent = `Temps restant pour ce quizz: ${minutes}m ${seconds}s`;
+        timerElement.textContent = `Temps restant : ${minutes}m ${seconds}s`;
 
         if (timeRemaining <= 0) {
             clearInterval(countdown);
